@@ -14,6 +14,7 @@ import dagger.Provides;
 @Module(library = true)
 public class ApplicationModule {
     private final NPRApplication application;
+    private static RSSFeed rssFeed;
 
     public ApplicationModule(NPRApplication application) {
         this.application = application;
@@ -34,10 +35,11 @@ public class ApplicationModule {
     @Provides
     @Singleton
     RSSFeed provideRSSFeed(@ApplicationContext Context context) {
-        if (context != null) {
-            return new RSSFeed(context);
+        if (context != null && rssFeed == null) {
+            rssFeed = new RSSFeed(context);
         } else {
-            return null;
+            rssFeed = null;
         }
+        return rssFeed;
     }
 }
