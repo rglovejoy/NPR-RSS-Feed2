@@ -9,6 +9,9 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
+/**
+ * Created to test the XML parser, to make sure that the POJOs are being filled in properly.
+ */
 public class XMLParserTest extends TestCase {
 
     private static final String xmlString =
