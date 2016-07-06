@@ -1,7 +1,6 @@
 package com.example.rglovejoy.npr_rss_feed.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,12 +18,17 @@ import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends BaseActivity {
 
     @Inject
     RSSFeed rssFeed;
 
+    @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+
     private FeedItemAdapter feedItemAdapter;
 
     @Override
@@ -32,9 +36,10 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ButterKnife.bind(this);
+
         feedItemAdapter = new FeedItemAdapter();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(feedItemAdapter);
 
@@ -80,7 +85,6 @@ public class MainActivity extends BaseActivity {
 
     @Subscribe
     public void onRSSFeedReceived(RSSFeedResponseEvent event) {
-        // _recyclerView.setAdapter(new FeedItemAdapter(event.getFeed()));
         feedItemAdapter.updateData(event.getFeed());
     }
 
