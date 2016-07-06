@@ -7,14 +7,22 @@ import android.webkit.WebView;
 
 import com.example.rglovejoy.npr_rss_feed.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ArticleActivity extends BaseActivity {
     public static final String EXTRA_URL = "extra_url";
     public static final String EXTRA_TITLE = "extra_title";
+
+    @BindView(R.id.article_webview)
+    WebView articleWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
+
+        ButterKnife.bind(this);
 
         Intent intent = getIntent();
         String url = intent.getStringExtra(EXTRA_URL);
@@ -23,7 +31,7 @@ public class ArticleActivity extends BaseActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(title);
 
-        WebView articleWebView = (WebView) findViewById(R.id.article_webview);
+        //WebView articleWebView = (WebView) findViewById(R.id.article_webview);
         articleWebView.getSettings().setJavaScriptEnabled(true);
         articleWebView.loadUrl(url);
     }

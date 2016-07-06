@@ -47,22 +47,26 @@ public class FeedItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (position == 0) {
             FeedTitleHolder feedTitleHolder = (FeedTitleHolder) holder;
             if (_feed != null) {
-                feedTitleHolder.feedTitle.setText(_feed.title);
-                feedTitleHolder.feedDescription.setText(_feed.description);
+                feedTitleHolder.setFeedTitleText(_feed.title);
+                feedTitleHolder.setFeedDescriptionText(_feed.description);
 
                 Picasso.with(feedTitleHolder
                         .itemView.getContext())
                         .load(_feed.image.url).
-                        into(feedTitleHolder.feedImage);
+                        into(feedTitleHolder.getTitleImageView());
             }
         } else {
             if (_feed != null) {
                 FeedItem item = _feed.feedItems.get(position - 1);
                 FeedItemHolder feedItemHolder = (FeedItemHolder) holder;
                 feedItemHolder.setFeedItem(item);
-                feedItemHolder.title.setText(item.title);
-                feedItemHolder.summary.setText(item.description);
-                feedItemHolder.creator.setText("Updated " + item.pubDate + " by " + item.creator);
+//                feedItemHolder.title.setText(item.title);
+//                feedItemHolder.summary.setText(item.description);
+//                feedItemHolder.creator.setText("Updated " + item.pubDate + " by " + item.creator);
+
+                feedItemHolder.setTitleText(item.title);
+                feedItemHolder.setSummaryText(item.description);
+                feedItemHolder.setCreatorText(item.pubDate, item.creator);
             }
         }
     }
