@@ -2,6 +2,7 @@ package com.example.rglovejoy.npr_rss_feed.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,10 +22,13 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     @Inject
     RSSFeed rssFeed;
+
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -37,6 +41,8 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+        swipeRefreshLayout.setOnRefreshListener(this);
 
         feedItemAdapter = new FeedItemAdapter();
 
@@ -98,4 +104,9 @@ public class MainActivity extends BaseActivity {
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
     }
 
+    // for SwipeRefreshLayout
+    @Override
+    public void onRefresh() {
+
+    }
 }
