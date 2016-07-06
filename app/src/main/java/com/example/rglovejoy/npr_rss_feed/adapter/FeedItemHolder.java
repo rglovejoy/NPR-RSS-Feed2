@@ -14,9 +14,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FeedItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-//    protected TextView title;
-//    protected TextView summary;
-//    protected TextView creator;
 
     @BindView(R.id.title)
     TextView title;
@@ -36,10 +33,6 @@ public class FeedItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         super(itemView);
 
         ButterKnife.bind(this, itemView);
-
-//        title = (TextView) itemView.findViewById(R.id.title);
-//        summary = (TextView) itemView.findViewById(R.id.summary);
-//        creator = (TextView) itemView.findViewById(R.id.creator);
 
         itemView.setOnClickListener(this);
         feedItem = null;

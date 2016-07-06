@@ -28,10 +28,9 @@ public class ArticleActivity extends BaseActivity {
         String url = intent.getStringExtra(EXTRA_URL);
         String title = intent.getStringExtra(EXTRA_TITLE);
 
-        ActionBar actionBar = getSupportActionBar();
+        //ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(title);
 
-        //WebView articleWebView = (WebView) findViewById(R.id.article_webview);
         articleWebView.getSettings().setJavaScriptEnabled(true);
         articleWebView.loadUrl(url);
     }
