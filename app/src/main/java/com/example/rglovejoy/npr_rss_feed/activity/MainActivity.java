@@ -92,6 +92,9 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     @Subscribe
     public void onRSSFeedReceived(RSSFeedResponseEvent event) {
         feedItemAdapter.updateData(event.getFeed());
+        if (swipeRefreshLayout.isRefreshing()) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Subscribe
@@ -107,6 +110,6 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     // for SwipeRefreshLayout
     @Override
     public void onRefresh() {
-
+        rssFeed.requestNewsFeed();
     }
 }
